@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="#">
+    <link rel="stylesheet" href="Dots.css" />
+    
+    <link rel="icon" href="#">
+    <title>Dots</title>
+</head>
+<body>
+    <div id = "menu">
+
+        <div class="buttons">
+            <button id="play"> play </button>
+            <button id="pause"> pause </button>
+        </div>
+
+        <div class = "inputs">
+            <label for="fps"> fps: </label>
+            <input id = "fps" type = "number" min = 0 step = 5>
+        </div>
+
+        <span> gen: <span id="gen"> 0 </span></span>
+
+    </div>
+
+    <canvas id = "playground"> </canvas>
+
+    <script src="Main.js" type="module"></script>
+</body>
+</html>

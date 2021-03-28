@@ -1,0 +1,20 @@
+
+html, body {
+    height: 100%;
+    width: 100%;
+    color: #2e2e2e;
+}
+
+div{
+    display: flex;
+    justify-content: space-between;
+}
+
+body{
+    margin: 0px;
+    background-color:aliceblue;
+}
+
+#playground{
+    border: 1px solid black;
+}
