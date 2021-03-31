@@ -127,20 +127,22 @@ class Game{
      * @returns 
      */
     score(dot){
-        //TODO score de longevité
-
-        let dx = dot.pos[0] - this.goal.pos[0];
-        let dy = dot.pos[1] - this.goal.pos[1];
-        let dist_to_goal = dx*dx + dy*dy;
-        if(this.collision(dot, this.goal)){
-            dist_to_goal = 0;
+        
+        let score = 0;
+        if (this.collision(dot, this.goal)) {
+            let expectancy_short_best = dot.step_i / dot.steps.length;
+            score = 0 + expectancy_short_best;
+        } else {
+            let dx = dot.pos[0] - this.goal.pos[0];
+            let dy = dot.pos[1] - this.goal.pos[1];
+            let dist_to_goal = dx*dx + dy*dy;
+            
+            let expectancy_long_best = 1 - dot.step_i/dot.steps.length;
+            
+            score = 1 + dist_to_goal * 10 + expectancy_long_best;
         }
 
-        let expectancy_long_best = 1 - dot.step_i/dot.steps.length; // to test
-        let expectancy_short_best = dot.step_i/dot.steps.length; // to test
-
-        let score = Math.ceil(dist_to_goal) * 100 + dist_to_goal * 10 + expectancy_long_best;
-
+        // score = this.collision(dot, this.goal) * expectancy_short_best + (1 - this.collision(dot, this.goal)) * (1 + dist_to_goal * 10 + expectancy_long_best);
         return score;
     }
 

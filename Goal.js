@@ -11,7 +11,7 @@ class Goal extends Entity{
         this.width = 0.05;
         this.height = 0.05;
         
-        this.pos = [0.3, 0.5 - this.height/2]; //normalized pos
+        this.pos = [0.12, 0.5 - this.height/2]; //normalized pos
         
         this.fillStyle = Goal.FILLSTYLE;
     }
