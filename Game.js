@@ -136,9 +136,10 @@ class Game{
             dist_to_goal = 0;
         }
 
-        let expectancy_score = 1 - dot.step_i/dot.steps.length;
+        let expectancy_long_best = 1 - dot.step_i/dot.steps.length; // to test
+        let expectancy_short_best = dot.step_i/dot.steps.length; // to test
 
-        let score = Math.ceil(dist_to_goal) * 100 + dist_to_goal * 10 + expectancy_score;
+        let score = Math.ceil(dist_to_goal) * 100 + dist_to_goal * 10 + expectancy_long_best;
 
         return score;
     }
