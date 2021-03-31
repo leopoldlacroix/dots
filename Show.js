@@ -36,10 +36,39 @@ class Show{
         }
         
     }
+
+    showScores(){
+        this.ctx.clearRect(0, 0, this.width, this.height);
+
+        this.game.dots.sort((dot1, dot2) => this.game.score(dot1) - this.game.score(dot2));
+        let len = this.game.dots.length;
+        for(let i in this.game.dots){
+
+            this.ctx.fillStyle = `rgb(${(1-i/len)*255},0,0)`;
+            let dot = this.game.dots[i];
+            let x = dot.pos[0] * this.width; 
+            let y = dot.pos[1] * this.height; 
+            let w = dot.width * this.width; 
+            let h = dot.height * this.height;
+            this.ctx.fillRect(x, y, w, h);
+            this.ctx.fillStyle = "#000000"
+            this.ctx.fillText(i,x,y);
+        }
+
+        let goal = this.game.goal
+        this.ctx.fillStyle = goal.fillStyle;
+        let x = goal.pos[0] * this.width; 
+        let y = goal.pos[1] * this.height; 
+        let w = goal.width * this.width; 
+        let h = goal.height * this.height;
+        this.ctx.fillRect(x, y, w, h);
+        
+    }
         
     nextState(){
 
         if(this.game.dots.every((dot) => !dot.alive)){
+            this.showScores();
             this.game.restart();
             this.updateGen();
             
@@ -57,10 +86,6 @@ class Show{
 
     }
 
-    start(){
-        this.resetInterval();
-        this.loop = true;
-    }
     resetInterval(){
         clearInterval(this.interval);
         this.interval = setInterval(this.nextState.bind(this), this.ms_timer);
@@ -72,9 +97,7 @@ class Show{
         if(fps > 0){
             this.ms_timer = (1/fps)*1000;
         }
-        if (this.interval) {
-            this.resetInterval();
-        }
+        this.resetInterval();
     }
     setTimer(ms_timer){
         this.ms_timer = ms_timer;

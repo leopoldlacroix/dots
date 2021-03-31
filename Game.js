@@ -60,19 +60,18 @@ class Game{
             return -1;
         }
 
-        if(this.won(dot)){
+        if(this.collision(dot, this.goal)){
             return 1;
         }
 
         return 0;
     }
 
-    won(dot){
-        // touches goals
-        let goal_pos = this.goal.pos;
-        let dot_pos = dot.pos;
-        if(dot_pos[0] <= goal_pos[0] + this.goal.width && dot_pos[0] + dot.width >= goal_pos[0] && 
-            dot_pos[1] <= goal_pos[1] + this.goal.height && dot_pos[1] + dot.height >= goal_pos[1]){
+    collision(entity1, entity2){
+        if(entity2.pos[0] <= entity1.pos[0] + entity1.width &&
+            entity2.pos[0] + entity2.width >= entity1.pos[0] &&
+            entity2.pos[1] <= entity1.pos[1] + entity1.height &&
+            entity2.pos[1] + entity2.height >= entity1.pos[1]){
                 return true;
             }
         
@@ -133,7 +132,7 @@ class Game{
         let dx = dot.pos[0] - this.goal.pos[0];
         let dy = dot.pos[1] - this.goal.pos[1];
         let dist_to_goal = dx*dx + dy*dy;
-        if(this.won(dot)){
+        if(this.collision(dot, this.goal)){
             dist_to_goal = 0;
         }
 
