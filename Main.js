@@ -1,7 +1,7 @@
 import { Game } from './Game.js';
 import { Show } from './Show.js';
 
-var game = new Game(100,150);
+var game = new Game(10,100);
 var show = new Show(game);
 
 

@@ -7,13 +7,11 @@ class Goal extends Entity{
     constructor(){
         super();
         this._type = "goal";
-
-        this.pos = [0.94, 0.5]; //normalized pos
-        this.size = 20;
-
         
-        this.width = 0.03;
-        this.height = 0.03;
+        this.width = 0.05;
+        this.height = 0.05;
+        
+        this.pos = [0.3, 0.5 - this.height/2]; //normalized pos
         
         this.fillStyle = Goal.FILLSTYLE;
     }
